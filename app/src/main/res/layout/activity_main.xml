@@ -24,7 +24,6 @@
         android:paddingBottom="8dp"
         android:paddingRight="8dp"
         android:paddingLeft="24dp"
-        android:saveEnabled="false"
         android:text="@string/whipped_cream"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
