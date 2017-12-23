@@ -8,8 +8,18 @@
     <!-- TODO ScrollView is broken somehow, it scrolls way too down after onCreate;
          OrderSummary changes seem to resolved that, though -->
 <android.support.constraint.ConstraintLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:padding="8dp"
+        android:inputType="textCapWords"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_toppings_label"
@@ -19,35 +29,35 @@
         android:text="@string/toppings"
         android:textAllCaps="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/et_name" />
 
     <CheckBox
         android:id="@+id/cb_whipped_cream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:onClick="refreshToppings"
         android:paddingBottom="8dp"
-        android:paddingRight="8dp"
         android:paddingLeft="24dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
         android:text="@string/whipped_cream"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_toppings_label"
-        android:onClick="refreshToppings"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_toppings_label"/>
 
     <CheckBox
         android:id="@+id/cb_chocolate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:onClick="refreshToppings"
         android:paddingBottom="8dp"
-        android:paddingRight="8dp"
         android:paddingLeft="24dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
         android:text="@string/chocolate"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream"
-        android:onClick="refreshToppings"/>
+        app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream"/>
 
     <TextView
         android:id="@+id/tv_quantity_label"
@@ -111,11 +121,11 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text=""
-        tools:text="Order summary comes here..."
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_order_summary_label" />
+        app:layout_constraintTop_toBottomOf="@id/tv_order_summary_label"
+        tools:text="Order summary comes here..." />
 
     <Button
         android:id="@+id/b_order"
