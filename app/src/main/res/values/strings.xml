@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="toppings">Toppings</string>
+    <string name="quantity">Quantity</string>
+    <string name="name">Name</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="order">Order</string>
+
+    <string name="whipped_cream">Whipped Cream</string>
+
+    <string name="toast_button_clicked">button clicked</string>
+
+    <string name="legal">Legal notice: we are actually not selling coffee, this is just a play app,
+        we cannot be legally force to really deliver the ordered product.\n\n
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum aliquet turpis vitae
+        accumsan. Donec ut nibh gravida, vehicula velit id, pharetra leo. Sed posuere sollicitudin
+        condimentum. Curabitur lobortis, lacus ac fermentum interdum, dolor magna lobortis urna, eu
+        cursus nunc turpis nec nulla. Nulla facilisi. Etiam molestie, orci quis aliquam porttitor,
+        lectus felis consequat nisi, id tristique lacus quam eget lacus. Morbi dictum congue
+        porttitor. Donec tincidunt risus ut tincidunt imperdiet. Aliquam fringilla dolor a neque
+        laoreet ultricies. Donec ornare leo nunc, at faucibus odio aliquam ac. Ut ultrices velit
+        magna. Aliquam varius orci eget orci ullamcorper imperdiet. In urna metus, gravida quis
+        pulvinar eu, tincidunt sed nunc. Nulla tincidunt a enim quis pulvinar.\n\n
+
+        Aliquam egestas molestie urna. Sed hendrerit orci quam, et molestie est efficitur a. Mauris
+        laoreet, erat vitae porta tincidunt, erat nisi vehicula nisl, ut maximus nibh eros vel
+        neque. Ut sit amet dictum nunc. Etiam sem odio, gravida sit amet convallis et, egestas
+        pharetra nisi. Suspendisse pulvinar odio sed venenatis aliquet. Nullam id enim vel turpis
+        commodo eleifend.</string>
+</resources>

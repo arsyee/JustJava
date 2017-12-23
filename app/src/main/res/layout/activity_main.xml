@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.justjava.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_toppings_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/toppings"
+        android:textAllCaps="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb_whipped_cream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="24dp"
+        android:saveEnabled="false"
+        android:text="@string/whipped_cream"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_toppings_label"
+        android:onClick="refreshToppings"/>
+
+    <TextView
+        android:id="@+id/tv_quantity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/quantity"
+        android:textAllCaps="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream" />
+
+    <!-- Quantity picker -->
+
+    <Button
+        android:id="@+id/b_quantity_down"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:onClick="decrementQuantity"
+        android:padding="8dp"
+        android:text="-"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity_label" />
+
+    <TextView
+        android:id="@+id/tv_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/b_quantity_down"
+        app:layout_constraintLeft_toRightOf="@id/b_quantity_down"
+        app:layout_constraintTop_toTopOf="@id/b_quantity_down" />
+
+    <Button
+        android:id="@+id/b_quantity_up"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:onClick="incrementQuantity"
+        android:padding="8dp"
+        android:text="+"
+        app:layout_constraintLeft_toRightOf="@id/tv_quantity"
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity_label" />
+
+    <!-- END OF Quantity picker-->
+
+    <TextView
+        android:id="@+id/tv_order_summary_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/order_summary"
+        android:textAllCaps="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity" />
+
+    <TextView
+        android:id="@+id/tv_order_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text=""
+        tools:text="Order summary comes here..."
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_order_summary_label" />
+
+    <Button
+        android:id="@+id/b_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="submitOrder"
+        android:padding="8dp"
+        android:text="@string/order"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_order_summary" />
+
+    <TextView
+        android:id="@+id/tv_legal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/legal"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/b_order" />
+
+</android.support.constraint.ConstraintLayout>
