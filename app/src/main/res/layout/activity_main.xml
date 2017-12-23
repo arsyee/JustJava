@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.android.justjava.MainActivity">
+    <!-- TODO ScrollView is broken somehow, it scrolls way too down after onCreate;
+         OrderSummary changes seem to resolved that, though -->
+<android.support.constraint.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <TextView
         android:id="@+id/tv_toppings_label"
@@ -30,6 +35,20 @@
         app:layout_constraintTop_toBottomOf="@id/tv_toppings_label"
         android:onClick="refreshToppings"/>
 
+    <CheckBox
+        android:id="@+id/cb_chocolate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="24dp"
+        android:text="@string/chocolate"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream"
+        android:onClick="refreshToppings"/>
+
     <TextView
         android:id="@+id/tv_quantity_label"
         android:layout_width="wrap_content"
@@ -38,7 +57,7 @@
         android:text="@string/quantity"
         android:textAllCaps="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream" />
+        app:layout_constraintTop_toBottomOf="@id/cb_chocolate" />
 
     <!-- Quantity picker -->
 
@@ -120,3 +139,4 @@
         app:layout_constraintTop_toBottomOf="@id/b_order" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

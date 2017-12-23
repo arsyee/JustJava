@@ -7,11 +7,12 @@
     <string name="order">Order</string>
 
     <string name="whipped_cream">Whipped Cream</string>
+    <string name="chocolate">Chocolate</string>
 
     <string name="toast_button_clicked">button clicked</string>
 
     <string name="legal">Legal notice: we are actually not selling coffee, this is just a play app,
-        we cannot be legally force to really deliver the ordered product.\n\n
+        we cannot be legally forced to really deliver the ordered product.\n\n
 
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum aliquet turpis vitae
         accumsan. Donec ut nibh gravida, vehicula velit id, pharetra leo. Sed posuere sollicitudin

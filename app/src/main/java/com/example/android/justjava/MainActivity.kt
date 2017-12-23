@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mTvOrderSummary : TextView
     private lateinit var mTvQuantity : TextView
     private lateinit var mCbWhippedCream : CheckBox
+    private lateinit var mCbChocolate : CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         mTvOrderSummary = findViewById<TextView>(R.id.tv_order_summary)
         mTvQuantity = findViewById<TextView>(R.id.tv_quantity)
         mCbWhippedCream = findViewById<CheckBox>(R.id.cb_whipped_cream)
+        mCbChocolate = findViewById<CheckBox>(R.id.cb_chocolate)
+        // TODO: isChecked always returns false after onCreate, while display state is retained
         Log.d(TAG, "onCreate: checkbox: "+mCbWhippedCream.isChecked)
         calculateToppings()
         refreshViews()
@@ -83,6 +86,8 @@ class MainActivity : AppCompatActivity() {
         val toppings: StringBuilder = StringBuilder("")
         val whippedCream = getString(whipped_cream)
         if (mCbWhippedCream.isChecked) toppings.append("\t$whippedCream\n")
+        val chocolate = getString(R.string.chocolate)
+        if (mCbChocolate.isChecked) toppings.append("\t$chocolate\n")
         mToppingsList = toppings.toString()
         Log.d(TAG, "toppings: " + mToppingsList)
     }
