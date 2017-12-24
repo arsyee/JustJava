@@ -158,8 +158,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun decrementQuantity(view: View) {
-        mQuantity--
-        refreshViews()
+        if (mQuantity > 0) {
+            mQuantity--
+            refreshViews()
+        }
     }
 
     fun incrementQuantity(view: View) {
