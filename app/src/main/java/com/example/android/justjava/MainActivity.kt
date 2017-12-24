@@ -11,10 +11,11 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.android.justjava.R.string.*
+import com.example.android.justjava.R.string.toppings
 
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +23,10 @@ class MainActivity : AppCompatActivity() {
         @JvmField val TAG = MainActivity.javaClass.simpleName
     }
 
+    enum class Toppings { Whipped_Cream, Chocolate }
+
     private var mQuantity = 0
-    private var mToppingsList : String = ""
+    private var mToppingsList = ArrayList<Toppings>()
     private var mName : String = ""
 
     private lateinit var mTvOrderSummary : TextView
@@ -72,20 +75,29 @@ class MainActivity : AppCompatActivity() {
         displayOrderSummary(mName, mQuantity, mToppingsList)
     }
 
-    private fun calculatePrice(quantity: Int) = 5 * quantity
+    private fun calculatePrice(quantity: Int, toppingsList: List<Toppings>) : Int {
+        var unitPrice = 5
+        for (topping in toppingsList) {
+            unitPrice += when (topping) {
+                Toppings.Whipped_Cream -> 1
+                Toppings.Chocolate -> 2
+            }
+        }
+        return unitPrice * quantity
+    }
 
     private fun display(quantity: Int) {
         mTvQuantity.text = NumberFormat.getInstance().format(quantity.toLong())
     }
 
-    private fun displayOrderSummary(name : String, quantity: Int, toppingsList: String) {
+    private fun displayOrderSummary(name : String, quantity: Int, toppingsList: List<Toppings>) {
         val orderSummary: String = createOrderSummary(name, quantity, toppingsList)
         mTvOrderSummary.text = orderSummary
     }
 
-    private fun createOrderSummary(name : String, quantity: Int, toppingsList: String): String {
+    private fun createOrderSummary(name : String, quantity: Int, toppingsList: List<Toppings>): String {
         val orderSummary: StringBuilder = StringBuilder("")
-        val price = calculatePrice(quantity)
+        val price = calculatePrice(quantity, toppingsList)
         val priceMessage: String
         if (price == 0) {
             priceMessage = "Free"
@@ -96,22 +108,40 @@ class MainActivity : AppCompatActivity() {
         }
         val quantityString = getText(R.string.quantity)
         val nameString = getText(R.string.name)
+        val toppingsString = toppingsString(toppingsList)
         orderSummary.append("$nameString: $name\n")
                     .append("$quantityString: $quantity\n")
-                    .append(toppingsList)
+                    .append(toppingsString)
                     .append("$priceMessage\n")
                     .append("Thank you!")
         return orderSummary.toString()
     }
 
+    private fun toppingsString(toppingsList: List<Toppings>): String {
+        val toppings: StringBuilder = StringBuilder("")
+        for (topping in toppingsList) {
+            val toppingString = when (topping) {
+                Toppings.Whipped_Cream -> getString(R.string.whipped_cream)
+                Toppings.Chocolate -> getString(R.string.chocolate)
+            }
+            toppings.append("\t$toppingString\n")
+        }
+        return toppings.toString();
+    }
+
     private fun calculateToppings() {
         Log.d(TAG, "calculateToppings: checkbox: "+mCbWhippedCream.isChecked)
-        val toppings: StringBuilder = StringBuilder("")
-        val whippedCream = getString(whipped_cream)
-        if (mCbWhippedCream.isChecked) toppings.append("\t$whippedCream\n")
-        val chocolate = getString(R.string.chocolate)
-        if (mCbChocolate.isChecked) toppings.append("\t$chocolate\n")
-        mToppingsList = toppings.toString()
+        mToppingsList = ArrayList()
+        if (mCbWhippedCream.isChecked) {
+            mToppingsList.add(Toppings.Whipped_Cream)
+        } else {
+            mToppingsList.remove(Toppings.Whipped_Cream)
+        }
+        if (mCbChocolate.isChecked) {
+            mToppingsList.add(Toppings.Chocolate)
+        } else {
+            mToppingsList.remove(Toppings.Chocolate)
+        }
         Log.d(TAG, "toppings: " + mToppingsList)
     }
 
