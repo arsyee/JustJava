@@ -64,6 +64,12 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: isChecked always returns false after onCreate, while display state is retained
         Log.d(TAG, "onCreate: checkbox: "+mCbWhippedCream.isChecked)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "onRestoreInstanceState: checkbox: "+mCbWhippedCream.isChecked)
+
         calculateToppings()
         refreshViews()
     }
@@ -146,13 +152,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateToppings() {
-        Log.d(TAG, "calculateToppings: checkbox: "+mCbWhippedCream.isChecked)
+        Log.d(TAG, "calculateToppings: whipped cream: "+mCbWhippedCream.isChecked)
         mToppingsList = ArrayList()
         if (mCbWhippedCream.isChecked) {
             mToppingsList.add(Toppings.Whipped_Cream)
         } else {
             mToppingsList.remove(Toppings.Whipped_Cream)
         }
+        Log.d(TAG, "calculateToppings: chocolate: "+mCbChocolate.isChecked)
         if (mCbChocolate.isChecked) {
             mToppingsList.add(Toppings.Chocolate)
         } else {
