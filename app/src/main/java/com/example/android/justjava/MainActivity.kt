@@ -1,5 +1,7 @@
 package com.example.android.justjava
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -67,6 +69,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun submitOrder(view: View) {
+        var intent = Intent(Intent.ACTION_SEND)
+        intent.type = "*/*"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("justjava@mailinator.com"))
+        // intent.data = Uri.parse("mailto:")
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject) + " " + mName)
+        intent.putExtra(Intent.EXTRA_TEXT, mTvOrderSummary.text.toString())
+        Log.d(TAG, "sending e-mail")
+        if (intent.resolveActivity(packageManager) != null) {
+            Log.d(TAG, "really sending e-mail")
+            startActivity(intent)
+        }
         showToast(getString(R.string.toast_button_clicked))
     }
 

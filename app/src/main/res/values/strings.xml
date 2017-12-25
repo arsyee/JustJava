@@ -9,6 +9,8 @@
     <string name="whipped_cream">Whipped Cream</string>
     <string name="chocolate">Chocolate</string>
 
+    <string name="subject">JustJava order for</string>
+
     <string name="toast_button_clicked">button clicked</string>
 
     <string name="legal">Legal notice: we are actually not selling coffee, this is just a play app,
