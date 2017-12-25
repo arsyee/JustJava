@@ -1,7 +1,6 @@
 package com.example.android.justjava
 
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,11 +12,13 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.android.justjava.R.string.toppings
 
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,25 +32,14 @@ class MainActivity : AppCompatActivity() {
     private var mToppingsList = ArrayList<Toppings>()
     private var mName : String = ""
 
-    private lateinit var mTvOrderSummary : TextView
-    private lateinit var mTvQuantity : TextView
-    private lateinit var mCbWhippedCream : CheckBox
-    private lateinit var mCbChocolate : CheckBox
-
-    private lateinit var mEtName : EditText
     private lateinit var mEtNameHandler : Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mTvOrderSummary = findViewById<TextView>(R.id.tv_order_summary)
-        mTvQuantity = findViewById<TextView>(R.id.tv_quantity)
-        mCbWhippedCream = findViewById<CheckBox>(R.id.cb_whipped_cream)
-        mCbChocolate = findViewById<CheckBox>(R.id.cb_chocolate)
 
-        mEtName = findViewById<EditText>(R.id.et_name)
         mEtNameHandler = Handler()
-        mEtName.addTextChangedListener(object : TextWatcher {
+        et_name.addTextChangedListener(object : TextWatcher {
             val updateName = UpdateName()
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
@@ -61,15 +51,10 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(p0: Editable?) { }
         })
-
-        // TODO: isChecked always returns false after onCreate, while display state is retained
-        Log.d(TAG, "onCreate: checkbox: "+mCbWhippedCream.isChecked)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        Log.d(TAG, "onRestoreInstanceState: checkbox: "+mCbWhippedCream.isChecked)
-
         calculateToppings()
         refreshViews()
     }
@@ -80,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("justjava@mailinator.com"))
         // intent.data = Uri.parse("mailto:")
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject, mName))
-        intent.putExtra(Intent.EXTRA_TEXT, mTvOrderSummary.text.toString())
+        intent.putExtra(Intent.EXTRA_TEXT, tv_order_summary.text.toString())
         Log.d(TAG, "sending e-mail")
         if (intent.resolveActivity(packageManager) != null) {
             Log.d(TAG, "really sending e-mail")
@@ -106,12 +91,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun display(quantity: Int) {
-        mTvQuantity.text = NumberFormat.getInstance().format(quantity.toLong())
+        tv_quantity.text = NumberFormat.getInstance().format(quantity.toLong())
     }
 
     private fun displayOrderSummary(name : String, quantity: Int, toppingsList: List<Toppings>) {
         val orderSummary: String = createOrderSummary(name, quantity, toppingsList)
-        mTvOrderSummary.text = orderSummary
+        tv_order_summary.text = orderSummary
     }
 
     private fun createOrderSummary(name : String, quantity: Int, toppingsList: List<Toppings>): String {
@@ -152,15 +137,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateToppings() {
-        Log.d(TAG, "calculateToppings: whipped cream: "+mCbWhippedCream.isChecked)
+        Log.d(TAG, "calculateToppings: whipped cream: "+cb_whipped_cream.isChecked)
         mToppingsList = ArrayList()
-        if (mCbWhippedCream.isChecked) {
+        if (cb_whipped_cream.isChecked) {
             mToppingsList.add(Toppings.Whipped_Cream)
         } else {
             mToppingsList.remove(Toppings.Whipped_Cream)
         }
-        Log.d(TAG, "calculateToppings: chocolate: "+mCbChocolate.isChecked)
-        if (mCbChocolate.isChecked) {
+        Log.d(TAG, "calculateToppings: chocolate: "+cb_chocolate.isChecked)
+        if (cb_chocolate.isChecked) {
             mToppingsList.add(Toppings.Chocolate)
         } else {
             mToppingsList.remove(Toppings.Chocolate)
@@ -170,7 +155,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class UpdateName : Runnable {
         override fun run() {
-            mName = mEtName.text.toString()
+            mName = et_name.text.toString()
             refreshViews()
         }
     }
