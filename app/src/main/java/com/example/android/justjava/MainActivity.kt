@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         intent.type = "*/*"
         intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("justjava@mailinator.com"))
         // intent.data = Uri.parse("mailto:")
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject) + " " + mName)
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject, mName))
         intent.putExtra(Intent.EXTRA_TEXT, mTvOrderSummary.text.toString())
         Log.d(TAG, "sending e-mail")
         if (intent.resolveActivity(packageManager) != null) {
@@ -113,11 +113,14 @@ class MainActivity : AppCompatActivity() {
         val price = calculatePrice(quantity, toppingsList)
         val priceMessage: String
         if (price == 0) {
-            priceMessage = "Free"
+            priceMessage = getString(R.string.free)
         } else if (price > 0) {
-            priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(price.toLong())
+            val format = NumberFormat.getCurrencyInstance()
+            format.currency = Currency.getInstance("USD")
+            priceMessage = getString(R.string.total)+": " + format.format(price.toLong())
         } else {
-            priceMessage = "You get: " + NumberFormat.getCurrencyInstance().format((-price).toLong())
+            priceMessage = "== ERROR =="
+            // dead code, negative not allowed any more
         }
         val quantityString = getText(R.string.quantity)
         val nameString = getText(R.string.name)
@@ -126,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                     .append("$quantityString: $quantity\n")
                     .append(toppingsString)
                     .append("$priceMessage\n")
-                    .append("Thank you!")
+                    .append(getString(R.string.thank_you))
         return orderSummary.toString()
     }
 

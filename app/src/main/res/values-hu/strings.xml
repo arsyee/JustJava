@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Just Java</string>
+    <string name="toppings">Feltétek</string>
+    <string name="quantity">Mennyiség</string>
+    <string name="name">Név</string>
+    <string name="order_summary">Rendelésösszesítő</string>
+    <string name="order">Rendelés</string>
+    <string name="whipped_cream">Tejszínhab</string>
+    <string name="chocolate">Csokoládé</string>
+    <string name="toast_button_clicked">megnyomtad a gombot</string>
+    <string name="legal">Felelősségkizárás: igazából nem árulunk kávét, ez csak egy játék app, jogilag nem vagyunk kötelezhetőek arra, hogy ténylegesen leszállítsuk a megrendelt terméket.\n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum aliquet turpis vitae accumsan. Donec ut nibh gravida, vehicula velit id, pharetra leo. Sed posuere sollicitudin condimentum. Curabitur lobortis, lacus ac fermentum interdum, dolor magna lobortis urna, eu cursus nunc turpis nec nulla. Nulla facilisi. Etiam molestie, orci quis aliquam porttitor, lectus felis consequat nisi, id tristique lacus quam eget lacus. Morbi dictum congue porttitor. Donec tincidunt risus ut tincidunt imperdiet. Aliquam fringilla dolor a neque laoreet ultricies. Donec ornare leo nunc, at faucibus odio aliquam ac. Ut ultrices velit magna. Aliquam varius orci eget orci ullamcorper imperdiet. In urna metus, gravida quis pulvinar eu, tincidunt sed nunc. Nulla tincidunt a enim quis pulvinar. Aliquam egestas molestie urna. Sed hendrerit orci quam, et molestie est efficitur a. Mauris laoreet, erat vitae porta tincidunt, erat nisi vehicula nisl, ut maximus nibh eros vel neque. Ut sit amet dictum nunc. Etiam sem odio, gravida sit amet convallis et, egestas pharetra nisi. Suspendisse pulvinar odio sed venenatis aliquet. Nullam id enim vel turpis commodo eleifend.
+    </string>
+    <string name="subject"><xliff:g id="name" example="Amy">%s</xliff:g> JustJava rendelése</string>
+    <string name="free">Ingyenes</string>
+    <string name="thank_you">Köszönjük!</string>
+    <string name="total">Összesen</string>
+</resources>
