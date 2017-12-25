@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         refreshViews()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun submitOrder(view: View) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "*/*"
@@ -149,11 +150,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun refreshToppings(view: View) {
         calculateToppings()
         refreshViews()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun decrementQuantity(view: View) {
         if (mQuantity > 0) {
             mQuantity--
@@ -161,6 +164,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun incrementQuantity(view: View) {
         mQuantity++
         refreshViews()
