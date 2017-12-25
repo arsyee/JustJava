@@ -8,9 +8,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 
 import java.text.NumberFormat
@@ -18,15 +15,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        @JvmField val TAG = MainActivity.javaClass.simpleName
+        @JvmField val TAG = MainActivity::class.java.simpleName!!
     }
 
-    enum class Toppings { Whipped_Cream, Chocolate }
+    enum class Toppings { WhippedCream, Chocolate }
 
     private var mQuantity = 0
     private var mToppingsList = ArrayList<Toppings>()
@@ -60,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun submitOrder(view: View) {
-        var intent = Intent(Intent.ACTION_SEND)
+        val intent = Intent(Intent.ACTION_SEND)
         intent.type = "*/*"
         intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("justjava@mailinator.com"))
         // intent.data = Uri.parse("mailto:")
@@ -83,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         var unitPrice = 5
         for (topping in toppingsList) {
             unitPrice += when (topping) {
-                Toppings.Whipped_Cream -> 1
+                Toppings.WhippedCream -> 1
                 Toppings.Chocolate -> 2
             }
         }
@@ -100,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createOrderSummary(name : String, quantity: Int, toppingsList: List<Toppings>): String {
-        val orderSummary: StringBuilder = StringBuilder("")
+        val orderSummary = StringBuilder("")
         val price = calculatePrice(quantity, toppingsList)
         val priceMessage: String
         if (price == 0) {
@@ -125,24 +121,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toppingsString(toppingsList: List<Toppings>): String {
-        val toppings: StringBuilder = StringBuilder("")
+        val toppings = StringBuilder("")
         for (topping in toppingsList) {
             val toppingString = when (topping) {
-                Toppings.Whipped_Cream -> getString(R.string.whipped_cream)
+                Toppings.WhippedCream -> getString(R.string.whipped_cream)
                 Toppings.Chocolate -> getString(R.string.chocolate)
             }
             toppings.append("\t$toppingString\n")
         }
-        return toppings.toString();
+        return toppings.toString()
     }
 
     private fun calculateToppings() {
         Log.d(TAG, "calculateToppings: whipped cream: "+cb_whipped_cream.isChecked)
         mToppingsList = ArrayList()
         if (cb_whipped_cream.isChecked) {
-            mToppingsList.add(Toppings.Whipped_Cream)
+            mToppingsList.add(Toppings.WhippedCream)
         } else {
-            mToppingsList.remove(Toppings.Whipped_Cream)
+            mToppingsList.remove(Toppings.WhippedCream)
         }
         Log.d(TAG, "calculateToppings: chocolate: "+cb_chocolate.isChecked)
         if (cb_chocolate.isChecked) {
