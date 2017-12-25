@@ -76,13 +76,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculatePrice(quantity: Int, toppingsList: List<Toppings>) : Int {
-        var unitPrice = 5
-        for (topping in toppingsList) {
-            unitPrice += when (topping) {
-                Toppings.WhippedCream -> 1
-                Toppings.Chocolate -> 2
-            }
-        }
+        val unitPrice = 5 + toppingsList.sumBy { when (it) {
+                                                     Toppings.WhippedCream -> 1
+                                                     Toppings.Chocolate -> 2
+                                               } }
         return unitPrice * quantity
     }
 
@@ -99,15 +96,14 @@ class MainActivity : AppCompatActivity() {
         val orderSummary = StringBuilder("")
         val price = calculatePrice(quantity, toppingsList)
         val priceMessage: String
-        if (price == 0) {
-            priceMessage = getString(R.string.free)
-        } else if (price > 0) {
-            val format = NumberFormat.getCurrencyInstance()
-            format.currency = Currency.getInstance("USD")
-            priceMessage = getString(R.string.total)+": " + format.format(price.toLong())
-        } else {
-            priceMessage = "== ERROR =="
-            // dead code, negative not allowed any more
+        when {
+            price == 0 -> priceMessage = getString(R.string.free)
+            price > 0 -> {
+                val format = NumberFormat.getCurrencyInstance()
+                format.currency = Currency.getInstance("USD")
+                priceMessage = getString(R.string.total)+": " + format.format(price.toLong())
+            }
+            else -> priceMessage = "== ERROR ==" // dead code, negative not allowed any more
         }
         val quantityString = getText(R.string.quantity)
         val nameString = getText(R.string.name)
@@ -122,13 +118,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun toppingsString(toppingsList: List<Toppings>): String {
         val toppings = StringBuilder("")
-        for (topping in toppingsList) {
-            val toppingString = when (topping) {
-                Toppings.WhippedCream -> getString(R.string.whipped_cream)
-                Toppings.Chocolate -> getString(R.string.chocolate)
-            }
-            toppings.append("\t$toppingString\n")
-        }
+        toppingsList.map { when (it) {
+                               Toppings.WhippedCream -> getString(R.string.whipped_cream)
+                               Toppings.Chocolate -> getString(R.string.chocolate)
+                         } }.forEach { toppings.append("\t$it\n") }
         return toppings.toString()
     }
 
