@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(p0: Editable?) { }
         })
+        refreshViews()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     // Misc functions
 
     fun refreshViews() {
+        Log.d(TAG, "refreshViews called")
         tv_quantity.text = NumberFormat.getInstance().format(mOrderDetails.getQuantity().toLong())
         tv_order_summary.text = mOrderDetails.createOrderSummary()
         b_order.isEnabled = mOrderDetails.isOrderAvailable

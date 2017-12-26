@@ -14,6 +14,7 @@ class OrderDetails(private val mContext: Context) {
         @JvmField val TAG = OrderDetails::class.java.simpleName!!
     }
 
+    private val coffeePrice = 5
     enum class Topping(val textId : Int, val price : Int) {
         WhippedCream(R.string.whipped_cream, 1),
         Chocolate(R.string.chocolate, 2)
@@ -24,7 +25,7 @@ class OrderDetails(private val mContext: Context) {
     var mName : String = ""
 
     var isOrderAvailable : Boolean = false
-        get() = mQuantity > 0
+        get() = mQuantity > 0 && mName.isNotEmpty()
 
     init {
         Topping.values().forEach {
@@ -33,8 +34,9 @@ class OrderDetails(private val mContext: Context) {
     }
 
     private fun calculatePrice() : Int {
-        val unitPrice = 5 + mToppingsList.keys.filter { it -> mToppingsList[it] == true }.
-                sumBy { it -> it.price }
+        val unitPrice = coffeePrice + mToppingsList.keys.
+                                          filter { it -> mToppingsList[it]!! }.
+                                          sumBy { it -> it.price }
         Log.d(TAG, "unitPrice: " + unitPrice)
         return unitPrice * mQuantity
     }
