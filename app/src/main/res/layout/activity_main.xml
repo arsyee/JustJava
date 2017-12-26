@@ -33,7 +33,7 @@
         android:id="@+id/cb_whipped_cream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="refreshToppings"
+        android:onClick="onWhippedCreamCheckboxClicked"
         android:paddingBottom="8dp"
         android:paddingLeft="24dp"
         android:paddingRight="8dp"
@@ -49,7 +49,7 @@
         android:id="@+id/cb_chocolate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="refreshToppings"
+        android:onClick="onChocolateCheckboxClicked"
         android:paddingBottom="8dp"
         android:paddingLeft="24dp"
         android:paddingRight="8dp"
@@ -77,7 +77,7 @@
         android:id="@+id/b_quantity_down"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:onClick="decrementQuantity"
+        android:onClick="onQuantityDownButtonClicked"
         android:padding="8dp"
         android:text="-"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -101,7 +101,7 @@
         android:id="@+id/b_quantity_up"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:onClick="incrementQuantity"
+        android:onClick="onQuantityUpButtonClicked"
         android:padding="8dp"
         android:text="+"
         app:layout_constraintLeft_toRightOf="@id/tv_quantity"
@@ -110,6 +110,15 @@
 
     <!-- END OF Quantity picker-->
 
+    <!-- Order Summary -->
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
     <TextView
         android:id="@+id/tv_order_summary_label"
         android:layout_width="wrap_content"
@@ -117,8 +126,8 @@
         android:padding="8dp"
         android:text="@string/order_summary"
         android:textAllCaps="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_quantity" />
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/et_name" />
 
     <TextView
         android:id="@+id/tv_order_summary"
@@ -128,7 +137,7 @@
         android:text=""
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/tv_order_summary_label"
         app:layout_constraintTop_toBottomOf="@id/tv_order_summary_label"
         tools:text="Order summary comes here..." />
 
@@ -136,10 +145,10 @@
         android:id="@+id/b_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="submitOrder"
+        android:onClick="onOrderButtonClicked"
         android:padding="8dp"
         android:text="@string/order"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/tv_order_summary_label"
         app:layout_constraintTop_toBottomOf="@id/tv_order_summary" />
 
     <TextView
@@ -151,7 +160,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/b_order" />
+        app:layout_constraintTop_toBottomOf="@id/b_quantity_down" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>
