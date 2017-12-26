@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.example.android.justjava.MainActivity">
+
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -21,57 +22,35 @@
 
     <TextView
         android:id="@+id/tv_toppings_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
         android:text="@string/toppings"
-        android:textAllCaps="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_name" />
+        app:layout_constraintTop_toBottomOf="@id/et_name"
+        style="@style/label" />
 
     <CheckBox
         android:id="@+id/cb_whipped_cream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:onClick="onWhippedCreamCheckboxClicked"
-        android:paddingBottom="8dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
         android:text="@string/whipped_cream"
-        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_toppings_label"
-        android:paddingStart="24dp"
-        android:paddingEnd="8dp" />
+        style="@style/topping_checkbox" />
 
     <CheckBox
         android:id="@+id/cb_chocolate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:onClick="onChocolateCheckboxClicked"
-        android:paddingBottom="8dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
         android:text="@string/chocolate"
-        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cb_whipped_cream"
-        android:paddingStart="24dp"
-        android:paddingEnd="8dp" />
+        style="@style/topping_checkbox" />
+
+    <!-- Quantity picker -->
 
     <TextView
         android:id="@+id/tv_quantity_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
         android:text="@string/quantity"
-        android:textAllCaps="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_chocolate" />
-
-    <!-- Quantity picker -->
+        app:layout_constraintTop_toBottomOf="@id/cb_chocolate"
+        style="@style/label" />
 
     <Button
         android:id="@+id/b_quantity_down"
@@ -108,8 +87,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_quantity_label"
         tools:ignore="HardcodedText" />
 
-    <!-- END OF Quantity picker-->
-
     <!-- Order Summary -->
 
     <android.support.constraint.Guideline
@@ -121,13 +98,10 @@
 
     <TextView
         android:id="@+id/tv_order_summary_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
         android:text="@string/order_summary"
-        android:textAllCaps="true"
         app:layout_constraintLeft_toLeftOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/et_name" />
+        app:layout_constraintTop_toBottomOf="@id/et_name"
+        style="@style/label" />
 
     <TextView
         android:id="@+id/tv_order_summary"
